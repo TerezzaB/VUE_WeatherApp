@@ -4,13 +4,7 @@
 
     <!-- Weather table -->
     <div v-if="weatherData">
-      <WeatherTable></WeatherTable>
-      <!-- Forecast table -->
-      <P-DataTable :value="weatherData.hourly" :paginator="true" :rows="5">
-        <P-Column field="timestamp" header="Timestamp" :sortable="true"></P-Column>
-        <P-Column field="relative_humidity_2m" header="Relative Humidity (%)" :sortable="true"></P-Column>
-        <P-Column field="wind_speed_10m" header="Wind Speed (m/s)" :sortable="true"></P-Column>
-      </P-DataTable>
+      <WeatherTable :weatherData="weatherData"></WeatherTable>
     </div>
     <div v-else>
       <p>Loading...</p>
@@ -31,6 +25,9 @@ export default {
       lat: 51.50,
       lon: -0.11,
     };
+  },
+  mounted() {
+    this.fetchWeatherData();
   },
   computed: {
     currentTemperature() {
@@ -53,11 +50,14 @@ export default {
     async fetchWeatherData() {
       try {
         const _response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=${this.ApiKey}`
+          //`https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=${this.ApiKey}`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${this.lat}&lon=${this.lon}&appid=${this.ApiKey}`
+          
         );
 
         this.weatherData = _response.data;
 
+        console.log("Here");
         console.log("this.weatherData: ", this.weatherData);
   
         if (!_response.data) {
@@ -68,9 +68,6 @@ export default {
         console.error("Error fetching weather data:", error);
       }
     },
-  },
-  mounted() {
-    this.fetchWeatherData();
   },
 };
 </script>
