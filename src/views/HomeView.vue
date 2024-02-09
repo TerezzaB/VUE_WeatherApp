@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>Weather App</h1>
-
     <!-- Weather table -->
     <div v-if="weatherData">
       <WeatherTable :weatherData="weatherData"></WeatherTable>
@@ -57,7 +55,6 @@ export default {
 
         this.weatherData = _response.data;
 
-        console.log("Here");
         console.log("this.weatherData: ", this.weatherData);
   
         if (!_response.data) {
@@ -67,6 +64,20 @@ export default {
       } catch (error) {
         console.error("Error fetching weather data:", error);
       }
+    },
+
+    getBackgroundImage() {
+      /*switch (this.weatherData.) {
+          case 'sunny':
+          return require(`@/assets/sunny.jpg`);
+          case 'rainy':
+          return require(`@/assets/rainy.jpg`);
+          case 'snowing':
+          return require(`@/assets/snow.jpg`);
+          // Add more cases for other weather types
+          default:
+          return require(`@/assets/default.jpg`); // A default image if the weather type is unknown
+      }*/
     },
   },
 };

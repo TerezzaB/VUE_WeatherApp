@@ -11,6 +11,7 @@ import 'primeicons/primeicons.css'; // Import PrimeIcons CSS
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
+import Divider from 'primevue/divider';
 
 
 const app = createApp(App);
@@ -22,6 +23,7 @@ app.use(PrimeVue);
 app.component('P-DataTable', DataTable);
 app.component('P-Column', Column);
 app.component('P-Button', Button);
+app.component('P-Divider', Divider);
 
 // Use router
 app.use(router);
